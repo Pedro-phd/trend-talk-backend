@@ -1,0 +1,28 @@
+<html>
+   <head>
+     <title>- HOME -</title>
+     <script src=/socket.io/socket.io.js></script>
+     <script>
+         const search = () =>{
+            
+             console.log(document.getElementById('input').value)
+             const word = document.getElementById('input').value
+             document.getElementById('tweets').innerHTML = ``
+             var socket = io('http://localhost:2525',{
+               query:`user=${word}`
+              });
+              socket.on('tweet', function(tweet){
+                    document.getElementById('tweets').innerHTML += `<p>username: ${tweet.username}</p>`
+                    document.getElementById('tweets').innerHTML += `<p>tweet: ${tweet.tweet}</p>`         
+              });
+         }
+     </script>
+   </head>
+   <body id="body">
+    <h1>Selecione seu tweet</h1>
+    <label>Tweet: </label>
+    <input type="text" placeholder="tweet" onchange="search()" id="input">
+    <div id="tweets">
+    </div>
+   </body>
+ </html>

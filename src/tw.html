@@ -1,0 +1,19 @@
+<html>
+   <head>
+     <title>- corno -</title>
+     <script src=/socket.io/socket.io.js></script>
+     <script>
+     var socket = io('http://localhost:2525',{
+       query:"user=famigerado"
+      });
+     socket.on('tweet', function(tweet){
+         document.getElementById('body').innerHTML += `<p>username: ${tweet.username}</p>`
+         document.getElementById('body').innerHTML += `<p>tweet: ${tweet.tweet}</p>`         
+     });
+     </script>
+   </head>
+   <body id="body">
+     <h1>TWEETS aa</h1>
+
+   </body>
+ </html>
